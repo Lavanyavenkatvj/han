@@ -45,4 +45,6 @@ while tries > 0:
         tries -= 1
         print(f"Wrong guess. You have {tries} tries left.")
 
-
+# Game over
+if tries == 0:
+    print("Game over! The word was:", word)
