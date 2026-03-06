@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Daily Task Manager</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f6f9;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+
+.container{
+    background:white;
+    padding:20px;
+    width:350px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+h2{
+    text-align:center;
+}
+
+input{
+    width:70%;
+    padding:8px;
+}
+
+button{
+    padding:8px;
+    cursor:pointer;
+}
+
+ul{
+    list-style:none;
+    padding:0;
+}
+
+li{
+    padding:8px;
+    margin-top:8px;
+    background:#eee;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-radius:5px;
+}
+
+.completed{
+    text-decoration: line-through;
+    color:gray;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Daily Task Manager</h2>
+
+<input type="text" id="taskInput" placeholder="Enter new task">
+<button onclick="addTask()">Add</button>
+
+<ul id="taskList"></ul>
+
+</div>
+
+<script>
+
+function addTask(){
+
+    let taskInput = document.getElementById("taskInput");
+    let taskText = taskInput.value;
+
+    if(taskText === ""){
+        alert("Please enter a task");
+        return;
+    }
+
+    let li = document.createElement("li");
+    li.innerHTML = `
+        <span onclick="toggleTask(this)">${taskText}</span>
+        <button onclick="deleteTask(this)">Delete</button>
+    `;
+
+    document.getElementById("taskList").appendChild(li);
+
+    taskInput.value="";
+}
+
+function toggleTask(element){
+    element.classList.toggle("completed");
+}
+
+function deleteTask(button){
+    button.parentElement.remove();
+}
+
+</script>
+
+</body>
+</html>
